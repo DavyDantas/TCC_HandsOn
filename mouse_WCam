@@ -1,0 +1,51 @@
+import cv2
+import mediapipe as mp
+import pyautogui
+
+# Inicializar MediaPipe Hands
+mp_hands = mp.solutions.hands
+hands = mp_hands.Hands()
+mp_draw = mp.solutions.drawing_utils
+
+# Inicializar captura de vídeo
+cap = cv2.VideoCapture(0) # 0 para webcam padrão
+
+# Obter resolução da tela para mapeamento
+screen_width, screen_height = pyautogui.size()
+
+while True:
+    success, img = cap.read()
+    if not success:
+        break
+
+    img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    results = hands.process(img_rgb)
+
+    if results.multi_hand_landmarks:
+        for hand_landmarks in results.multi_hand_landmarks:
+            # Desenhar os pontos da mão (opcional, para visualização)
+            mp_draw.draw_landmarks(img, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+
+            # Obter coordenadas da ponta do dedo indicador (landmark 8)
+            index_finger_tip = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP]
+
+            # Mapear coordenadas da mão para a tela
+            # Inverter X para espelhar o movimento da câmera
+            x = int(index_finger_tip.x * screen_width)
+            y = int(index_finger_tip.y * screen_height)
+
+            # Mover o cursor do mouse
+            pyautogui.moveTo(x, y)
+
+            # Exemplo de detecção de clique (juntar polegar e indicador)
+            # thumb_tip = hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP]
+            # if abs(index_finger_tip.y - thumb_tip.y) < 0.05: # Ajuste este valor para sensibilidade
+            #     pyautogui.click()
+
+    cv2.imshow("Controle de Mouse por Gestos", img)
+
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
