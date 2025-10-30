@@ -1,0 +1,7 @@
+https://mediapipe-studio.webapps.google.com/studio/demo/gesture_recognizer
+
+https://ai.google.dev/edge/mediapipe/solutions/vision/gesture_recognizer/python?hl=pt-br
+
+https://github.com/google-ai-edge/mediapipe/blob/master/mediapipe/modules/palm_detection/palm_detection_gpu.pbtxt
+
+https://github.com/google-ai-edge/mediapipe-samples/blob/main/examples/gesture_recognizer/python/gesture_recognizer.ipynb
