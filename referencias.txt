@@ -5,3 +5,11 @@ https://ai.google.dev/edge/mediapipe/solutions/vision/gesture_recognizer/python?
 https://github.com/google-ai-edge/mediapipe/blob/master/mediapipe/modules/palm_detection/palm_detection_gpu.pbtxt
 
 https://github.com/google-ai-edge/mediapipe-samples/blob/main/examples/gesture_recognizer/python/gesture_recognizer.ipynb
+
+
+pacotes:
+pip install "numpy==1.23.5"
+pip install "tensorflow<2.11" 
+pip install "opencv-python==4.8.0.76"
+pip install mediapipe==0.10.5
+pip install mediapipe-model-maker

@@ -1,0 +1,13 @@
+{
+    "configs": {
+        "current_min_cutoff": 0.5,
+        "current_beta": 0.001,
+        "margin_x": 0.44,
+        "margin_y": 0.46,
+        "min_gain": 0.2,
+        "max_gain": 1.8,
+        "sigmoid_slope": 52.0,
+        "sigmoid_mid": 0.1,
+        "deadzone": 3.0
+    }
+}
